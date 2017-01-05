@@ -27,7 +27,10 @@ fn disable_interrupts() -> DisableInterrupts {
 /// The “bool” version returns true if the comparison is successful and newval was written. The
 /// “val” version returns the contents of *ptr before the operation.
 #[no_mangle]
-pub unsafe extern "C" fn __sync_val_compare_and_swap_1(ptr_: *mut u8, oldval: u8, newval: u8) -> u8 {
+pub unsafe extern "C" fn __sync_val_compare_and_swap_1(ptr_: *mut u8,
+                                                       oldval: u8,
+                                                       newval: u8)
+                                                       -> u8 {
     let _interrupts_disabled = disable_interrupts();
     let startval = ptr::read(ptr_);
 
@@ -39,7 +42,10 @@ pub unsafe extern "C" fn __sync_val_compare_and_swap_1(ptr_: *mut u8, oldval: u8
 }
 
 #[no_mangle]
-pub unsafe extern "C" fn __sync_val_compare_and_swap_4(ptr_: *mut u32, oldval: u32, newval: u32) -> u32 {
+pub unsafe extern "C" fn __sync_val_compare_and_swap_4(ptr_: *mut u32,
+                                                       oldval: u32,
+                                                       newval: u32)
+                                                       -> u32 {
     let _interrupts_disabled = disable_interrupts();
     let startval = ptr::read(ptr_);
 
@@ -62,7 +68,6 @@ pub unsafe extern "C" fn __sync_val_compare_and_swap_4(ptr_: *mut u32, oldval: u
 /// This builtin is not a full barrier, but rather an acquire barrier. This means that references
 /// after the builtin cannot move to (or be speculated to) before the builtin, but previous memory
 /// stores may not be globally visible yet, and previous memory loads may not yet be satisfied.
-
 #[no_mangle]
 pub unsafe extern "C" fn __sync_lock_test_and_set_1(ptr_: *mut u8, value: u8) -> u8 {
     let _interrupts_disabled = disable_interrupts();
