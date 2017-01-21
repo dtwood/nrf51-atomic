@@ -2,5 +2,6 @@
 name = "nrf51-atomic"
 version = "0.1.0"
 authors = ["David Wood <devel@dtwood.uk>"]
+license = "ISC"
 
 [dependencies]
